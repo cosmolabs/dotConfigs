@@ -204,10 +204,14 @@ assign [class="Firefox-esr"] $ws2
 #exec code /home/ganesh/.config/
 #exec brave-browser
 #exec xterm
+#commented above as boot is too slow.
 
 #Opening xterm in workspace 5 with the font specified.
 bindsym $mod+x workspace $ws5, exec xterm -fa 'SourceCodePro-Regular' -fs 15
 
 #Shtting down the system
-set $shutDown "sudo shutdown -P"
-bindsym $mod+Shift+p exec $shutDown
+#set $shutDown "sudo shutdown -P"
+#bindsym $mod+Shift+p exec $shutDown
+
+#executing redshift on system start
+exec_always redshift
