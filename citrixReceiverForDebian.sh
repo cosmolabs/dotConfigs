@@ -7,8 +7,9 @@
 #Prerequisits   : Downloaded icaClient from citrix website, sudo privillages
 #Instructions
 #1. Download icaClient receiver from citrix website and keep it in Downloads folder.
-#2. Run the shell script as normal user
+#2. Run the shell script as normal user and use sh to run the script instead of "./"
 #3. Enter the sudo password when promted.
+#Modified : Aug 08 2020 - Added libjpeg dependency for libwebkit
 #=========================================================================================================================
 
 #System paths && variables
@@ -25,6 +26,7 @@ echo "\nDownloading dependent packages ......."
 curl -O http://ftp.br.debian.org/debian/pool/main/i/icu/libicu57_57.1-6+deb9u4_amd64.deb
 curl -O http://ftp.br.debian.org/debian/pool/main/w/webkitgtk/libjavascriptcoregtk-1.0-0_2.4.11-3_amd64.deb
 curl -O http://ftp.br.debian.org/debian/pool/main/w/webkitgtk/libwebkitgtk-1.0-0_2.4.11-3_amd64.deb
+curl -O http://ftp.br.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.2-2+b1_amd64.deb
 
 #Moving ica client package to execution folder
 echo "\nCopying icaclient deb package to a tmp directory......"
@@ -32,7 +34,7 @@ sudo cp ${icaClientDownloadedFilePath} $(pwd)
 
 #installing all the deb packages as root and answering yes for installation
 echo "\nInstallation started ....."
-sudo apt install -y ./libicu57_57* && sudo apt install -y ./libjavascriptcoregtk* && sudo apt install -y ./libwebkitgtk* && sudo apt install -y ./icaclient*
+sudo apt install -y ./libicu57_57* && sudo apt install -y ./libjavascriptcoregtk* && sudo apt install -y ./libjpeg62* && sudo apt install -y ./libwebkitgtk* && sudo apt install -y ./icaclient*
 
 #Copying certificates to make citrix work.
 echo "\nCopying required certificates"
