@@ -58,3 +58,30 @@ COLOR_BOLD="\[$(tput bold)\]"
 #PS1="${COLOR_RED}\$(SELECT)${COLOR_RESET}\\h ${COLOR_YELLOW}${COLOR_BOLD}::${COLOR_RESET} ${COLOR_GREEN}\\w ${COLOR_PURPLE}\$(precmd) ${COLOR_B}${COLOR_BOLD}>>${COLOR_RESET} "
 PS1="${COLOR_RED}\$(SELECT)${COLOR_GREEN}\\w ${COLOR_PURPLE}\$(precmd)${COLOR_RESET}
 ${COLOR_GREEN}${COLOR_BOLD}:-:-${COLOR_RESET} "
+
+. ~/.git-prompt.bash
+
+precmd() {
+    echo `git_prompt_precmd`
+}
+
+if [ -d "$HOME/.bin" ];
+then
+  PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
+fi
+
+#youtube-dl
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+#shutdown or reboot
+alias ssn="sudo shutdown now"
+alias sr="sudo reboot"
