@@ -9,12 +9,13 @@
 #1. Download icaClient receiver from citrix website and keep it in Downloads folder.
 #2. Run the shell script as normal user and use sh to run the script instead of "./"
 #3. Enter the sudo password when promted.
-#Modified : Dec 02 2020. Added dependency libegl1-mesa and download url for citrix receiver.
+#Modified : Dec 04 2020. Reverted back to old citrix download as the download link is not permenant link.
 #=========================================================================================================================
 
 #System paths && variables
 tmpPath=/tmp
 tmpDownloadFolder=$(echo ${0} | awk '{ print $1}' FS=".")
+icaClientDownloadedFilePath=~/Downloads/icaclient*
 
 #Creating temporary folder for downloads and installations.
 #echo "\nMoving the execution to temp directory ......."
@@ -27,11 +28,11 @@ curl -O http://ftp.br.debian.org/debian/pool/main/w/webkitgtk/libjavascriptcoreg
 curl -O http://ftp.br.debian.org/debian/pool/main/w/webkitgtk/libwebkitgtk-1.0-0_2.4.11-3_amd64.deb
 curl -O http://ftp.br.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.2-2+b1_amd64.deb
 curl -O http://ftp.br.debian.org/debian/pool/main/m/mesa/libegl1-mesa_18.3.6-2+deb10u1_amd64.deb
-curl -O "https://downloads.citrix.com/14822/icaclient_13.10.0.20_amd64.deb?__gda__=1606908542_be5a627bdce11743325f6eb2853dd416"
+#curl -O "https://downloads.citrix.com/14822/icaclient_13.10.0.20_amd64.deb?__gda__=1606908542_be5a627bdce11743325f6eb2853dd416"
 
 #Moving ica client package to execution folder
-#echo "\nCopying icaclient deb package to a tmp directory......"
-#sudo cp ${icaClientDownloadedFilePath} $(pwd)
+echo "\nCopying icaclient deb package to a tmp directory......"
+sudo cp ${icaClientDownloadedFilePath} $(pwd)
 
 #installing all the deb packages as root and answering yes for installation
 echo "\nInstallation started ....."
