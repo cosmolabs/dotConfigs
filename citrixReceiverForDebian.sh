@@ -3,13 +3,14 @@
 #=========================================================================================================================
 #installing citrix receiver in debian & and it's dependent distors.
 #Author : ganesh
-#Date   : July 18 2020
+#Create Date   : July 18 2020
 #Prerequisits   : Downloaded icaClient from citrix website, sudo privillages
+
 #Instructions
 #1. Download icaClient receiver from citrix website and keep it in Downloads folder.
 #2. Run the shell script as normal user and use sh to run the script instead of "./"
 #3. Enter the sudo password when promted.
-#Modified : Dec 04 2020. Reverted back to old citrix download as the download link is not permenant link.
+#Modified : Dec 06 2020. Added update and upgrade line.
 #=========================================================================================================================
 
 #System paths && variables
@@ -29,17 +30,22 @@ curl -O http://ftp.br.debian.org/debian/pool/main/w/webkitgtk/libwebkitgtk-1.0-0
 curl -O http://ftp.br.debian.org/debian/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.2-2+b1_amd64.deb
 curl -O http://ftp.br.debian.org/debian/pool/main/m/mesa/libegl1-mesa_18.3.6-2+deb10u1_amd64.deb
 #curl -O "https://downloads.citrix.com/14822/icaclient_13.10.0.20_amd64.deb?__gda__=1606908542_be5a627bdce11743325f6eb2853dd416"
+#commented the above line as URL is changing everytime
 
 #Moving ica client package to execution folder
 echo "\nCopying icaclient deb package to a tmp directory......"
 sudo cp ${icaClientDownloadedFilePath} $(pwd)
+
+#updating and upgrading the system.
+echo "\nUpdating and upgrading the system ..."
+sudo apt update && sudo apt upgrade -y
 
 #installing all the deb packages as root and answering yes for installation
 echo "\nInstallation started ....."
 sudo apt install -y ./libicu57_57* && sudo apt install -y ./libjavascriptcoregtk* && sudo apt install -y ./libjpeg62* && sudo apt install -y ./libegl1-mesa* && sudo apt install -y ./libwebkitgtk* && sudo apt install -y ./icaclient*
 
 #Copying certificates to make citrix work.
-echo "\nCopying required certificates"
+echo "\nCopying required certificates ........"
 sudo ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/
 sudo c_rehash /opt/Citrix/ICAClient/keystore/cacerts/
 
@@ -47,4 +53,4 @@ sudo c_rehash /opt/Citrix/ICAClient/keystore/cacerts/
 cd ~
 #removing the temp directory
 sudo rm -r ${tmpPath}/${tmpDownloadFolder}
-echo "\nInstallation completed ...."
+echo "\nInstallation completed ........"
