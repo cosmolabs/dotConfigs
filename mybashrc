@@ -33,13 +33,13 @@ extract () {
    fi
  }
 
- SELECT(){
+SELECT(){
   if [ "$?" -eq 0 ]
     then
-    echo ""
+    echo "";
   else 
-    echo -e "[X]" ; echo -e "\n "
-fi
+    echo -e "[X] - $?" ; echo -e "\n ";
+  fi
 }
 
 COLOR_BLACK="\[$(tput setaf 0)\]"
