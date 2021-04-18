@@ -91,3 +91,7 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 #shutdown or reboot
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
+
+
+#ignore upper and lowercase when TAB completion
+bind "set completion-ignore-case on"
