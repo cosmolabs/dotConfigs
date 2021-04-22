@@ -1,0 +1,43 @@
+# system info
+# hardware info --short
+alias hardwareInfo="hwinfo --short"
+# probe in great detail
+alias probe="sudo -E hw-probe -all"
+# Journal details
+alias jctl="journalctl -p 3 -xb"
+# Ram deatails
+alias ram="free -mth"
+
+# listing files
+alias ls="ls -lh --color=auto"
+
+# youtube-dl aliases
+# Audio
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+#video
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+# system maintainence
+alias ssn="sudo shutdown now"
+alias sr="sudo reboot"
+
+# processes
+alias proc="ps auxf"
+
+#### Arch linux aliases ####
+# Begin
+# Detailed package information with storage
+alias pkg-details="expac -H M '%m\t%n' | sort -h | nl"
+
+# Recent Installed Packages
+alias recpkgs="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -250 | nl"
+
+# End
+#### Arch linux aliases ####

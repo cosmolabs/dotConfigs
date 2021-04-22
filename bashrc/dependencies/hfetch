@@ -896,5 +896,7 @@ ${c01}▉▉  | ${f2}Disk ${c08}......... $f1$(get_disk)
 ${c09}  ▉▉| 
 ${c07}▉▉  | ${f2}Birthday ${c08}..... $f1$birthd
 ${c15}  ▉▉| ${f2}Memory ${c08}....... $f1$(get_mem)
+${c02}▉▉  | 
+${c10}  ▉▉| ${f2}Today ${c08}....... $f1$(date +"%d %B, %Y")
 
 EOF
