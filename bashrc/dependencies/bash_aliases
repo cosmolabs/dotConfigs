@@ -8,10 +8,18 @@ alias jctl="journalctl -p 3 -xb"
 # Ram deatails
 alias ram="free -mth"
 
-# listing files
-alias ls="ls -lh --color=auto"
+# Interactive file operations
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
 
-# youtube-dl aliases
+# Listing files
+alias ls="ls -h --color=auto"
+alias ll="ls -lh --color=auto"
+alias la="ls -lah --clolor=auto"
+
+
+# Youtube-dl aliases
 # Audio
 alias yta-best="youtube-dl --extract-audio --audio-format best "
 alias yta-aac="youtube-dl --extract-audio --audio-format aac "
@@ -24,12 +32,22 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 #video
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
-# system maintainence
+# System maintainence
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
 
-# processes
+# Processes
 alias proc="ps auxf"
+
+# Git command alias
+alias gbrnch="git branch"
+alias gcln="git clean -df"
+alias gstats="git status"
+alias gcmit="git commit -m"
+alias gpush="git push"
+alias gpul="git pull"
+alias gconfl="git config --list"
+alias gconf="git config"
 
 #### Arch linux aliases ####
 # Begin

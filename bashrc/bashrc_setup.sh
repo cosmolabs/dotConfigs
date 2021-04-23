@@ -47,5 +47,5 @@ then
 	mv $HOME/.bash_aliases $HOME/.bash_aliases.bkp
 fi
 
-echo -e "\nSetup completed. Sourcing the new bashrc ......"
-bash
+echo -e "\nSetup completed. Source new bashrc."
+#source ~/.bashrc

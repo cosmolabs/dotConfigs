@@ -27,7 +27,7 @@ SELECT(){
   if [ "$?" -eq 0 ]
     then
     echo "";
-  else	
+  else
     echo -e "\n " ; echo -e "[X] - $?" ; echo -e "\n " ;
   fi
 }
@@ -107,7 +107,7 @@ function rm_pac_orph ()
 {
 	echo ""
 	echo "Remove Orphans : pacman -Rsn soruced with pacman -Qqdt"
-	echo ""	
+	echo ""
 	pacman -Rsn $(pacman -Qqdt)
 }
 
