@@ -7,14 +7,14 @@
 # Instructions		:	Execute the setup from the  bashrc folder downladed from git
 #						to pull required dependencies.
 #						Run the shell script using sh
-# Date Modified		:	April 22, 2021
+# Date Modified		:	April 27, 2021
 
 
 # Verify and create a .bin directory if it doesn't exist in user's  home directory
-if [ ! -d "$HOME/.bin" ] ;  
+if [ ! -d "$HOME/.bin" ] ;
 then
 	echo -e "\nCreating .bin directory in ${HOME} .......";
-	mkdir $HOME/.bin;
+	mkdir "$HOME"/.bin;
 fi
 
 # Verify and create a bashrc directory if it doesn't exists in user's howe directory
@@ -22,7 +22,7 @@ fi
 if [ ! -d "$HOME/.bin/bashrc" ]
 then
 	echo -e "\nCreating bashrc directory in ${HOME}/.bin ......."
-	mkdir -p $HOME/.bin/bashrc
+	mkdir -p "$HOME"/.bin/bashrc
 fi
 
 # Copying all the dependencies into bashrc folder creaetd and 
@@ -37,14 +37,14 @@ fi
 # Creating the backup of existing bashrc file and copying newly downloaded bashrc
 if [ -f "$HOME/.bashrc" ] ;
 then
-	mv $HOME/.bashrc $HOME/.bashrc.bkp
-	cp bashrc $HOME/.bashrc
+	mv "$HOME"/.bashrc "$HOME"/.bashrc.bkp
+	cp bashrc "$HOME"/.bashrc
 fi
 
 # Backing up existing aliases file if exists
-if [ -f $HOME/.bash_aliases ] ;
+if [ -f "$HOME"/.bash_aliases ] ;
 then
-	mv $HOME/.bash_aliases $HOME/.bash_aliases.bkp
+	mv "$HOME"/.bash_aliases "$HOME"/.bash_aliases.bkp
 fi
 
 echo -e "\nSetup completed. Source new bashrc."
