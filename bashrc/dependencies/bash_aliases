@@ -8,6 +8,9 @@ alias jctl="journalctl -p 3 -xb"
 # Ram deatails
 alias ram="free -mth"
 
+# Folder size
+alias fs="du -h --max-depth=0"
+
 # Interactive file operations
 alias cp="cp -i"
 alias mv="mv -i"
