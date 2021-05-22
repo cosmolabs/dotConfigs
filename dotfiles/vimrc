@@ -1,9 +1,6 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              	" Behave like vim instead of vi 
+filetype off                  	" Attempt to detect filetype/contents so that vim can autoindent 
+syntax on
 set path+=**					" Searches current directory recursively.
 set wildmenu					" Display all matches when tab complete.
 set incsearch                   " Incremental search
@@ -13,40 +10,25 @@ set noswapfile                  " No swap
 set t_Co=256                    " Set if term supports 256 colors.
 set number relativenumber       " Display line numbers
 set clipboard=unnamedplus       " Copy/paste between vim and other programs.
-syntax enable
 let g:rehash256 = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Remap Keys
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap ESC to ii
-" :imap ii <Esc>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Status Line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" The lightline.vim theme
-let g:lightline = {
-      \ 'colorscheme': 'Nord',
-      \ }
-
-" Always show statusline
-set laststatus=1
-
-" Uncomment to prevent non-normal modes showing in powerline and below powerline.
-"set noshowmode
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ignorecase 
+set smartcase
+set backspace=indent,eol,start	" Allow backspacing over autoindent, line breaks and start of insert action
+set laststatus=1				" Always show statusline
 set expandtab                   " Use spaces instead of tabs.
 set smarttab                    " Be smart using tabs ;)
 set shiftwidth=4                " One tab == four spaces.
 set tabstop=4                   " One tab == four spaces.
+set confirm						" Instead of failing a command because of unsaved changes, instead raise a  dialogue
+set visualbell					" Use visual bell instead of beeping when doing something wrong 
+set cmdheight=2					" Set the command window height to 2 lines
+set ruler						" Display the cursor position on the last line of the screen or in the status line of a window
+set modelines=0					" Security
+set wrap
+set spell
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Theming
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
 highlight CursorLineNr     ctermfg=7    ctermbg=8       cterm=none
 highlight VertSplit        ctermfg=0    ctermbg=8       cterm=none
@@ -90,4 +72,3 @@ highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
 highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
 highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
 highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
-

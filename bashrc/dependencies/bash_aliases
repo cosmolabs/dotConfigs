@@ -61,4 +61,8 @@ alias pkg-details="expac -H M '%m\t%n' | sort -h | nl"
 alias recpkgs="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -250 | nl"
 
 # End
-#### Arch linux aliases ####
+#### Arch Linux aliases ####
+
+# aria2c - download utility
+alias aria2c-sf="aria2c --show-files"
+alias aria2c-tor="aria2c --seed-time=0"
