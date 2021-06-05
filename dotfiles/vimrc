@@ -25,7 +25,7 @@ set cmdheight=2					" Set the command window height to 2 lines
 set ruler						" Display the cursor position on the last line of the screen or in the status line of a window
 set modelines=0					" Security
 set wrap
-set spell
+"set spell
 
 " => Colors and Theming
 

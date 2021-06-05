@@ -1,4 +1,27 @@
-# Nord
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+window:
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  startup_mode: Maximized
+  title: terminal
+  dynamic_title: true
+
+  
+cursor:
+  #Cursor style
+  style:
+    # Cursor shape
+    #
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    shape: Beam
+    
 
 # Colors (Nord)
 colors:
@@ -46,4 +69,20 @@ font:
     family: Source Code Pro
     style: Bold Italic
 
-  size: 13
+  size: 12.0
+
+
+# Key bindings
+#
+# Key bindings are specified as a list of objects. For example, this is the
+# default paste binding:
+key_bindings:
+- { key: V, mods: Control|Shift, action: Paste }
+- { key: C, mods: Control|Shift, action: Copy }
+- { key: I, mods: Control|Shift, action: IncreaseFontSize }
+- { key: D, mods: Control|Shift, action: DecreaseFontSize }
+- { key: E, mods: Control|Shift, action: ResetFontSize }
+- { key: M, mods: Control|Shift, action: ResetFontSize }
+- { key: Home, mods: Control, action: ScrollToTop }
+- { key: End, mods: Control, action: ScrollToBottom }
+
