@@ -26,7 +26,11 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+# os related libraries.
+import os
+import subprocess
+
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -80,12 +84,12 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
-    Key([mod], "o", lazy.spawn("dmenu_run -b -p 'Run: '"),
+    Key([mod], "o", lazy.spawn("dmenu_run -i -b -fn 'SourceCodePro:bold:pixelsize=14' -p 'Run: '"),
         desc='Run Launcher'),
 ]
 
 # Defining workspaces
-wrkspc_names = {"1": "Web", "2": "DEV", "3": "WRK", "4": "ENT", "5": "MISC"}
+wrkspc_names = {"1": "WEB", "2": "DEV", "3": "WRK", "4": "ENT", "5": "MISC"}
 wrkspc_layouts = {"1": "monadtall", "2": "monadtall", "3": "monadtall", "4": "monadtall", "5": "bsp"}
 
 groups = []
@@ -102,22 +106,54 @@ for i in groups:
             desc="Switch to group {}".format(i.name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
+        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+        #     desc="Switch to & move focused window to group {}".format(i.name)),
         # Or, use below if you prefer not to switch to that group.
         # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+            desc="move focused window to group {}".format(i.name)),
+        
+        Key([mod], "Tab", lazy.window.next_window(),
+            desc="Flipping through tabs."),
+
     ])
+
+colors = [["#282c34", "#282c34"],
+          ["#3d3f4b", "#434758"],
+          ["#ffffff", "#ffffff"],
+          ["#ff5555", "#ff5555"],
+          ["#74438f", "#74438f"],
+          ["#4f76c7", "#4f76c7"],
+          ["#e1acff", "#e1acff"],
+          ["#ecbbfb", "#ecbbfb"]]
+
+layout_theme = {"border_width": 2,
+                "margin": 8,
+                "border_focus": "576EF3",
+                "border_normal": "1D2330"
+                }
+
 
 layouts = [
     layout.Columns(border_focus_stack='#d75f5f'),
     #layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-     layout.Bsp(),
+     layout.Bsp(**layout_theme      
+     ),
     # layout.Matrix(),
-     layout.MonadTall(),
+     layout.MonadTall(**layout_theme
+        # border_width = 2,
+        # border_focus = "#576EF3",
+        # padding_left = 0,
+        # padding_x = 0,
+        # padding_y = 5,
+        # section_top = 10,
+        # section_bottom = 20,
+        # level_shift = 8,
+        # vspace = 3,
+        # panel_width = 200
+     ),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -127,8 +163,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
-    fontsize=12,
+    font='SourceCodePro-Bold',
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -136,11 +172,42 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=bar.Bar(
-            [                
-                widget.GroupBox(),
-                widget.Prompt(),
+            [
+                # widget.Image(
+                #     filename = "~/.config/qtile/icons/python_white.png",
+                #     scale = "False"                    
+                #     ),                
+                widget.GroupBox(                    
+                    background = colors[0],
+                    margin_y = 3,
+                    margin_x = 0,
+                    padding_y = 5,
+                    padding_x = 3,
+                    borderwidth = 3,
+                    active = colors[2],
+                    inactive = colors[5],
+                    rounded = False,
+                    highlight_color = colors[1],
+                    highlight_method = "line",
+                    this_current_screen_border = colors[2],
+                    this_screen_border = colors [4],
+                    # other_current_screen_border = colors[6],
+                    # other_screen_border = colors[4],
+                    foreground = colors[2]
+                ),
+                #widget.Prompt(),
                 #widget.CurrentLayout(),
-                widget.WindowName(),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    foreground = colors[2],
+                    background = colors[0]
+                ),
+                widget.WindowName(                    
+                    foreground = colors[2],
+                    background = colors[0],
+                    fmt="{}"                    
+                ),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
@@ -149,11 +216,70 @@ screens = [
                 ),
                 #widget.TextBox("my config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
+                # widget.Net(
+                #     interface="wlp2s0"
+                # ),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+                # wifi icon gets added if we start nm-applet application.
+                widget.Systray(
+                    background = colors[0]
+                ),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+                widget.Memory(
+                       foreground = colors[2],
+                       background = colors[0],
+                       measure_mem= "M",
+                       #mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                       padding = 5
+                       ),
+                widget.TextBox(
+                       text = " ⟳",
+                       padding = 2,
+                       foreground = colors[2],
+                       background = colors[0],
+                       fontsize = 14
+                       ),       
+                widget.CheckUpdates(
+                       update_interval = 1800,
+                       distro = "ManjaroLinux",
+                       display_format = "Updates: {updates}",
+                       foreground = colors[2],
+                       #mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+                       background = colors[0]
+                       ),       
+                widget.Volume(
+                       foreground = colors[2],
+                       background = colors[0],
+                       fmt="VOL: {}",
+                       #theme_path=[os.path.expanduser("~/.config/qtile/vol_icon.png")],
+                       padding = 5
+                       ),
+                widget.Clock(
+                    background = colors[0],
+                    format="%a, %b %d - %H:%M"), #"'%d %b, %a %H:%M'),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+                widget.QuickExit(
+                    background = colors[0],
+                    default_text="Log off",
+                    countdown_format="[ {} ]"
+                ),
             ],
-            24,
+            25,
         ),
     ),
 ]
@@ -185,6 +311,13 @@ floating_layout = layout.Floating(float_rules=[
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+# Configuring autostart applications.
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~')
+    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
