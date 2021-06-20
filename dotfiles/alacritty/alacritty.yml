@@ -7,7 +7,7 @@ window:
   #   - Maximized
   #   - Fullscreen
   startup_mode: Maximized
-  title: terminal
+  title: alacritty
   dynamic_title: true
 
   
@@ -20,7 +20,7 @@ cursor:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Beam
+    shape: Block
     
 
 # Colors (Nord)
