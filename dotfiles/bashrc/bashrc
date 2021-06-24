@@ -10,6 +10,10 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.emacs.d" ] ;
+  then PATH="$PATH:$HOME/.emacs.d/bin"
+fi
+
 # Displays system info
 # Fetching the script from user's bin folder
 if [ -f "$HOME/.bin/bashrc/hfetch" ] ; then 
@@ -45,8 +49,11 @@ COLOR_RESET="\[$(tput sgr0)\]"
 COLOR_BOLD="\[$(tput bold)\]"
 
 PS1="
-[${COLOR_BOLD}${COLOR_PURPLE}\u : ${COLOR_GREEN}\h${COLOR_RESET}] - ${COLOR_RESET}\\W ${COLOR_RESET}${COLOR_YELLOW}\$(precmd)${COLOR_RESET}
-${COLOR_BOLD}>>${COLOR_RESET} "
+[ ${COLOR_GREEN}\h${COLOR_RESET} ] - ${COLOR_RESET}\\w ${COLOR_RESET}${COLOR_YELLOW}\$(precmd)${COLOR_RESET}
+${COLOR_BOLD}>${COLOR_RESET} "
+#[${COLOR_BOLD}${COLOR_PURPLE}\u : ${COLOR_GREEN}\h${COLOR_RESET}] - ${COLOR_RESET}\\W ${COLOR_RESET}${COLOR_YELLOW}\$(precmd)${COLOR_RESET}
+#${COLOR_BOLD}:${COLOR_RESET} "
+
 
 if [ -f "$HOME/.bin/bashrc/git-prompt.bash" ] ; then 
 	. $HOME/.bin/bashrc/git-prompt.bash
