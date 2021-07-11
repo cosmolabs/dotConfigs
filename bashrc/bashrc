@@ -25,6 +25,10 @@ if [ -f "$HOME/.bin/bashrc/bash_aliases" ] ; then
 	. $HOME/.bin/bashrc/bash_aliases
 fi
 
+# Default editor
+export EDITOR='vim'
+export VISUAL='vim'
+
 #### Shell prompt ###
 #### Begin ####
 SELECT(){

@@ -20,7 +20,8 @@ alias rm="rm -i"
 alias ls="ls -h --color=auto"
 alias ll="ls -lh --color=auto"
 alias la="ls -lah --clolor=auto"
-
+# Show only . files
+alias ls.="ls -A | egrep '^\.'"
 
 # Youtube-dl aliases
 # Audio
@@ -60,9 +61,20 @@ alias pkg-details="expac -H M '%m\t%n' | sort -h | nl"
 # Recent Installed Packages
 alias recpkgs="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -250 | nl"
 
+# Fastest mirrors near by.
+alias refersh_mirrors="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+
+# Pacman
+alias pacman='sudo pacman --color auto'
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
+
 # End
 #### Arch Linux aliases ####
 
 # aria2c - download utility
 alias aria2c-sf="aria2c --show-files"
 alias aria2c-tor="aria2c --seed-time=0"
+
+# User available in the system.
+alias users="cut -d: -f1 /etc/passwd"
